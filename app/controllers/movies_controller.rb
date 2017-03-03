@@ -10,8 +10,15 @@ class MoviesController < ApplicationController
     # will render app/views/movies/show.<extension> by default
   end
 
-  def index
+  def index #where we edit stuff for hw3
     @movies = Movie.all
+    sort_by = params[:sort_by]
+    
+    if sort_by == "title"
+      @movies = @movies.order(:title)
+    elsif sort_by == "release date"
+      @movies = @movies.order(release_date: :asc)
+    end
   end
 
   def new
