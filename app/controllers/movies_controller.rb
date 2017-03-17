@@ -12,12 +12,15 @@ class MoviesController < ApplicationController
 
   def index #where we edit stuff for hw3
     @movies = Movie.all
+    @r_class = @m_class = "th"
     sort_by = params[:sort_by]
     
     if sort_by == "title"
       @movies = @movies.order(:title)
+      @title_header = "hilite" 
     elsif sort_by == "release date"
       @movies = @movies.order(release_date: :asc)
+      @release_header = "hilite"
     end
   end
 
